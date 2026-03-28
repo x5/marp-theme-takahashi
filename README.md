@@ -53,10 +53,13 @@ paginate: true
     - [方式二：注册主题目录，再在 Markdown 里用 `theme: takahashi`](#方式二注册主题目录再在-markdown-里用-theme-takahashi)
   - [最小示例](#最小示例)
   - [内置版式](#内置版式)
+    - [完整页面 class 对照表](#完整页面-class-对照表)
     - [`lead`](#lead)
     - [`compact`](#compact)
     - [`invert`](#invert)
+    - [`palette`](#palette)
   - [配色说明](#配色说明)
+    - [完整颜色变量表](#完整颜色变量表)
   - [自定义建议](#自定义建议)
   - [示例文件](#示例文件)
   - [开发方式](#开发方式)
@@ -221,6 +224,21 @@ paginate: true
 
 这个主题目前提供几个常用的 slide class，可通过 Marp 的 `class` / `_class` 指令启用。
 
+### 完整页面 class 对照表
+
+| class 名称 | 用途 | 典型写法 |
+| --- | --- | --- |
+| `lead` | 封面页、章节起始页、主标题页 | `<!-- _class: lead -->` |
+| `compact` | 紧凑说明页、列表页 | `<!-- _class: compact -->` |
+| `invert` | 反白强调页 | `<!-- _class: invert -->` |
+| `palette` | 配色展示页，按列表项顺序着色 | `<!-- _class: palette -->` |
+
+说明：
+
+- 这些 class 都是作用在每一页的 `section` 元素上
+- 更常见的写法是 `<!-- _class: ... -->`，只让当前页生效
+- 如果写成 `<!-- class: ... -->`，则会持续影响后续页面，直到被新的 `class` 指令覆盖
+
 ### `lead`
 
 用于封面页、章节起始页、主标题页。
@@ -283,6 +301,32 @@ paginate: true
 - 深色正文
 - 一级标题仍保留朱砂色强调
 
+### `palette`
+
+用于配色说明页。它通常与 `compact` 一起使用。
+
+```markdown
+<!-- _class: compact palette -->
+
+### 中国风配色
+
+- 朱砂：主强调色
+- 姜黄：标题与重点
+- 青金：冷静辅助色
+- 月白：纸感留白
+```
+
+效果：
+
+- 列表页保持紧凑排版
+- 不同列表项按顺序应用不同颜色
+- 适合做主题色展示页
+
+注意：
+
+- `palette` 当前不是按文字内容识别颜色
+- 它是按列表项顺序上色：第 1 项、第 2 项、第 3 项、第 4 项分别对应不同颜色
+
 ## 配色说明
 
 当前主题使用了一套偏中国风的颜色系统，核心色包括：
@@ -296,6 +340,30 @@ paginate: true
 
 如果你想改成自己的风格，优先修改 `themes/takahashi.css` 顶部的颜色变量，而不是在后面直接替换零散颜色。
 
+### 完整颜色变量表
+
+| CSS 变量名 | 中文名 | 值 | 主要用途 |
+| --- | --- | --- | --- |
+| `--color-xuanhei` | 玄黑 | `#0f1014` | 主背景、深色页基底 |
+| `--color-songyan` | 松烟 | `#1a1f24` | 深色辅助背景备用 |
+| `--color-sumi-edge` | 墨边 | `#2a3138` | 深色边缘辅助色备用 |
+| `--color-yuebai` | 月白 | `#f7f3e8` | 正文主色、浅色留白 |
+| `--color-mitu` | 米土 | `#e6dcc8` | 次级文字、引用文字 |
+| `--color-zhusha` | 朱砂 | `#c63c2f` | `h1`、强强调色 |
+| `--color-jianghuang` | 姜黄 | `#d5a021` | 强调文字、配色页标题 |
+| `--color-qiuxiang` | 秋香 | `#c98b2e` | 暖色辅助色备用 |
+| `--color-qingjin` | 青金 | `#6f8f89` | 冷静辅助色、配色页第 3 项 |
+| `--color-cangqing` | 苍青 | `#2d4f5d` | 更深的冷色辅助备用 |
+| `--color-danjin-glow` | 淡金光 | `rgba(213, 160, 33, 0.18)` | 早期发光效果保留变量，目前未直接使用 |
+| `--color-zhusha-glow` | 朱砂光 | `rgba(198, 60, 47, 0.12)` | 早期发光效果保留变量，目前未直接使用 |
+| `--color-paper-glow` | 纸光 | `rgba(247, 243, 232, 0.08)` | `code` 背景和轻微高亮底色 |
+
+补充说明：
+
+- 当前 README 里提到的“核心色”是面向使用者的简化描述
+- 上表才是主题 CSS 里目前定义的完整变量集合
+- 其中一部分变量是主用色，一部分是备用或轻效果变量
+
 ## 自定义建议
 
 你通常会改这几个地方：
@@ -303,7 +371,7 @@ paginate: true
 - `:root`: 页面尺寸、背景、基础字体、基础字号
 - `h1`, `h2`, `h3`: 标题层级
 - `section::after`: 页码样式
-- `section.lead`, `section.compact`, `section.invert`: 页面变体
+- `section.lead`, `section.compact`, `section.invert`, `section.palette`: 页面变体
 - 顶部颜色变量：整套主题配色
 
 ## 示例文件

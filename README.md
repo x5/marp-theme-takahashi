@@ -1,4 +1,4 @@
-# Marp Theme Takahashi
+# Takahashi Theme for Marp
 
 ![Marp](https://img.shields.io/badge/Marp-Theme-1f6feb)
 ![Language](https://img.shields.io/badge/Language-zh--CN-c63c2f)
@@ -31,21 +31,35 @@ paginate: true
 
 ## 目录
 
-- [什么是 Takahashi 风格](#什么是-takahashi-风格)
-- [什么是 Marp](#什么是-marp)
-- [特性](#特性)
-- [目录结构](#目录结构)
-- [安装方式](#安装方式)
-- [在 VS Code 中使用](#在-vs-code-中使用)
-- [在 Marp CLI 中使用](#在-marp-cli-中使用)
-- [最小示例](#最小示例)
-- [内置版式](#内置版式)
-- [配色说明](#配色说明)
-- [自定义建议](#自定义建议)
-- [示例文件](#示例文件)
-- [开发方式](#开发方式)
-- [适用场景](#适用场景)
-- [许可证](#许可证)
+- [Takahashi Theme for Marp](#takahashi-theme-for-marp)
+  - [快速开始](#快速开始)
+  - [目录](#目录)
+  - [什么是 Takahashi 风格](#什么是-takahashi-风格)
+  - [什么是 Marp](#什么是-marp)
+  - [特性](#特性)
+  - [目录结构](#目录结构)
+  - [安装方式](#安装方式)
+    - [方式一：直接下载或复制主题文件](#方式一直接下载或复制主题文件)
+    - [方式二：克隆整个仓库](#方式二克隆整个仓库)
+  - [在 VS Code 中使用](#在-vs-code-中使用)
+    - [1. 安装扩展](#1-安装扩展)
+    - [2. 注册主题](#2-注册主题)
+    - [3. 在 Markdown 中启用主题](#3-在-markdown-中启用主题)
+    - [4. 预览](#4-预览)
+  - [在 Marp CLI 中使用](#在-marp-cli-中使用)
+    - [方式一：直接指定主题文件](#方式一直接指定主题文件)
+    - [方式二：注册主题目录，再在 Markdown 里用 `theme: takahashi`](#方式二注册主题目录再在-markdown-里用-theme-takahashi)
+  - [最小示例](#最小示例)
+  - [内置版式](#内置版式)
+    - [`lead`](#lead)
+    - [`compact`](#compact)
+    - [`invert`](#invert)
+  - [配色说明](#配色说明)
+  - [自定义建议](#自定义建议)
+  - [示例文件](#示例文件)
+  - [开发方式](#开发方式)
+  - [适用场景](#适用场景)
+  - [许可证](#许可证)
 
 ## 什么是 Takahashi 风格
 

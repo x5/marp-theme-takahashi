@@ -1,0 +1,263 @@
+/* @theme takahashi */
+
+@import 'default';
+
+:root {
+  --color-xuanhei: #0f1014;
+  --color-songyan: #1a1f24;
+  --color-sumi-edge: #2a3138;
+  --color-yuebai: #f7f3e8;
+  --color-mitu: #e6dcc8;
+  --color-zhusha: #c63c2f;
+  --color-jianghuang: #d5a021;
+  --color-qiuxiang: #c98b2e;
+  --color-qingjin: #6f8f89;
+  --color-cangqing: #2d4f5d;
+  --color-danjin-glow: rgba(213, 160, 33, 0.18);
+  --color-zhusha-glow: rgba(198, 60, 47, 0.12);
+  --color-paper-glow: rgba(247, 243, 232, 0.08);
+  width: 1280px;
+  height: 720px;
+  padding: 64px 84px;
+  background: var(--color-xuanhei);
+  color: var(--color-yuebai);
+  font-family: "Aptos", "Segoe UI", "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", "Source Han Sans SC", sans-serif;
+  font-size: 36px;
+  line-height: 1.08;
+}
+
+section {
+  display: grid;
+  place-content: center;
+  gap: 0.22em;
+  text-align: center;
+}
+
+section[lang='zh-CN'],
+section[lang='zh'] {
+  font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", "Source Han Sans SC", "Segoe UI", sans-serif;
+}
+
+h1,
+h2,
+h3,
+p,
+blockquote,
+ul,
+ol {
+  margin: 0;
+}
+
+h1 {
+  max-width: 10ch;
+  margin-inline: auto;
+  font-size: 3.6em;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  color: var(--color-zhusha);
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+h2 {
+  max-width: 12ch;
+  margin-inline: auto;
+  font-size: 2.8em;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+h3 {
+  max-width: 15ch;
+  margin-inline: auto;
+  font-size: 2em;
+  font-weight: 760;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+p,
+li {
+  max-width: 18ch;
+  margin-inline: auto;
+  font-size: 1.3em;
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+strong {
+  color: var(--color-jianghuang);
+}
+
+code {
+  padding: 0.08em 0.22em;
+  border-radius: 0.16em;
+  background: var(--color-paper-glow);
+  color: #f3d483;
+}
+
+ul,
+ol {
+  justify-self: center;
+  width: fit-content;
+  max-width: 22ch;
+  padding-left: 1.2em;
+  text-align: left;
+  list-style-position: outside;
+}
+
+ul li,
+ol li {
+  max-width: none;
+  margin-inline: 0;
+}
+
+blockquote {
+  max-width: 22ch;
+  margin-inline: auto;
+  padding-top: 0.4em;
+  font-size: 1.05em;
+  font-weight: 500;
+  color: var(--color-mitu);
+}
+
+section[lang='zh-CN'] h1,
+section[lang='zh'] h1,
+section[lang='zh-CN'] h2,
+section[lang='zh'] h2,
+section[lang='zh-CN'] h3,
+section[lang='zh'] h3 {
+  letter-spacing: 0.01em;
+  line-height: 1.15;
+}
+
+section[lang='zh-CN'] p,
+section[lang='zh'] p,
+section[lang='zh-CN'] li,
+section[lang='zh'] li,
+section[lang='zh-CN'] blockquote,
+section[lang='zh'] blockquote {
+  max-width: 16ch;
+  line-height: 1.28;
+}
+
+section[lang='zh-CN'] ul,
+section[lang='zh'] ul,
+section[lang='zh-CN'] ol,
+section[lang='zh'] ol {
+  max-width: 18ch;
+}
+
+header,
+footer {
+  position: absolute;
+  left: 84px;
+  right: 84px;
+  font-size: 0.36em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(247, 243, 232, 0.46);
+}
+
+header {
+  top: 30px;
+}
+
+footer {
+  bottom: 28px;
+}
+
+section::after {
+  content: attr(data-marpit-pagination);
+  position: absolute;
+  right: 32px;
+  bottom: 24px;
+  font-size: 0.34em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(247, 243, 232, 0.42);
+}
+
+section.lead {
+  place-content: center;
+}
+
+section.lead h1 {
+  max-width: 9ch;
+  font-size: 4.2em;
+}
+
+section.lead p {
+  font-size: 1.1em;
+  font-weight: 500;
+  color: var(--color-mitu);
+}
+
+section.compact {
+  place-content: center;
+  gap: 0.4em;
+}
+
+section.compact h3,
+section.compact p,
+section.compact li {
+  max-width: 22ch;
+  font-size: 1em;
+  font-weight: 550;
+  line-height: 1.25;
+}
+
+section.compact ul,
+section.compact ol {
+  max-width: 24ch;
+}
+
+section.invert {
+  background: #f4ead7;
+  color: var(--color-xuanhei);
+}
+
+section.invert strong,
+section.invert code {
+  color: var(--color-zhusha);
+}
+
+section.invert h1 {
+  color: var(--color-zhusha);
+}
+
+section.invert header,
+section.invert footer,
+section.invert::after {
+  color: rgba(24, 24, 24, 0.45);
+}
+
+section.palette {
+  gap: 0.28em;
+}
+
+section.palette h3 {
+  color: var(--color-jianghuang);
+}
+
+section.palette ul {
+  max-width: 22ch;
+}
+
+section.palette li:nth-child(1) {
+  color: var(--color-zhusha);
+}
+
+section.palette li:nth-child(2) {
+  color: var(--color-jianghuang);
+}
+
+section.palette li:nth-child(3) {
+  color: var(--color-qingjin);
+}
+
+section.palette li:nth-child(4) {
+  color: var(--color-yuebai);
+}

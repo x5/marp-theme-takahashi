@@ -10,6 +10,8 @@
 
 > 面向中文演讲场景的大字 Marp 主题，强调一页一个重点、强节奏和中国风配色。
 
+仓库地址：<https://github.com/x5/marp-theme-takahashi>
+
 ## 快速开始
 
 1. 安装 `Marp for VS Code`

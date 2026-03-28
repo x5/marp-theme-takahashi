@@ -58,7 +58,12 @@ paginate: true
     - [`compact`](#compact)
     - [`invert`](#invert)
     - [`palette`](#palette)
+    - [`text-two-column`](#text-two-column)
+    - [`image-demo`](#image-demo)
+    - [`bg-cover-demo`](#bg-cover-demo)
+    - [`image-split-demo`](#image-split-demo)
   - [配色说明](#配色说明)
+    - [标题层级颜色](#标题层级颜色)
     - [完整颜色变量表](#完整颜色变量表)
   - [自定义建议](#自定义建议)
   - [示例文件](#示例文件)
@@ -232,6 +237,11 @@ paginate: true
 | `compact` | 紧凑说明页、列表页 | `<!-- _class: compact -->` |
 | `invert` | 反白强调页 | `<!-- _class: invert -->` |
 | `palette` | 配色展示页，按列表项顺序着色 | `<!-- _class: palette -->` |
+| `cols-50-50` | 左右各 50% 的两列文本布局 | `<!-- _class: cols-50-50 -->` |
+| `cols-33-67` | 左 1/3 右 2/3 的文本布局 | `<!-- _class: cols-33-67 -->` |
+| `image-demo` | 普通插图页，放开图片容器宽度限制 | `<!-- _class: image-demo -->` |
+| `bg-cover-demo` | 整页背景图封面页 | `<!-- _class: bg-cover-demo -->` |
+| `image-split-demo` | 左图右文的分栏说明页 | `<!-- _class: image-split-demo -->` |
 
 说明：
 
@@ -327,6 +337,132 @@ paginate: true
 - `palette` 当前不是按文字内容识别颜色
 - 它是按列表项顺序上色：第 1 项、第 2 项、第 3 项、第 4 项分别对应不同颜色
 
+### `cols-50-50`
+
+用于左右各 50% 的两列文本排版。适合把一页内容拆成左右两组，做并列信息、对照说明、双列表展示。
+
+```markdown
+<!-- _class: cols-50-50 -->
+
+## 两列文本
+
+### 左列
+
+- 适合并列信息
+- 适合要点对照
+
+### 右列
+
+- 标题和内容分层明确
+- 避免每列塞太多文字
+```
+
+说明：
+
+- 这些 class 是页面级布局 class，不是块级 class
+- Marp 的 `class` / `_class` 会作用到当前页的 `<section>`，不能分别标记同一页里的左列和右列
+- 页面主标题 `##` 会占整行
+- 第一个 `###` 及其后面的第一个内容块会进入左列
+- 第二个 `###` 及其后面的第一个内容块会进入右列
+- 这是一个偏约定式的 Markdown 写法，优先适合简洁的双列说明页
+
+效果：
+
+- 页面标题在上方
+- 下方内容自动分成左右两列
+- 每列适合放一个小标题和一个内容块
+- 适合信息对照页、结构拆分页、双清单页
+
+### `cols-33-67`
+
+用于左 1/3 右 2/3 的文本布局。
+
+```markdown
+<!-- _class: cols-33-67 -->
+
+## 左 1/3 右 2/3
+
+### 摘要
+
+一句话说明左侧内容。
+
+### 主体
+
+- 右侧保留更大内容空间
+- 适合展开说明或步骤列表
+```
+
+效果：
+
+- 左列更窄，适合摘要、标签、结论
+- 右列更宽，适合正文、步骤、细节说明
+- 适合“摘要 + 展开”或“标签 + 内容”页面
+
+### `image-demo`
+
+用于普通插图页。这个 class 会放开主题里对段落宽度的全局限制，避免图片被缩进一个过窄的文本容器里。
+
+```markdown
+<!-- _class: image-demo -->
+
+### 普通插图
+
+![width:680px](../assets/turtle.jpg)
+
+用于正文中插入一张常规图片。
+```
+
+效果：
+
+- 图片容器不再被普通文本宽度限制住
+- 适合正文说明 + 一张中等尺寸图片
+- 可作为其他图片页 class 的基础类使用
+
+### `bg-cover-demo`
+
+用于整页背景图封面页。
+
+```markdown
+<!-- _class: bg-cover-demo -->
+
+![bg cover](../assets/turtle.jpg)
+
+# 整页背景图
+
+适合做章节封面或转场页。
+```
+
+效果：
+
+- 图片铺满整页作为背景
+- 文字落在左下区域，更像章节封面
+- 适合章节页、转场页、情绪型封面页
+
+### `image-split-demo`
+
+用于左图右文的分栏说明页。
+
+```markdown
+<!-- _class: image-split-demo -->
+
+![bg left:40%](../assets/turtle.jpg)
+
+## 左右分栏图文
+
+- 左边是图片
+- 右边是说明
+```
+
+效果：
+
+- 图片固定在左侧区域
+- 标题、正文、列表稳定落在右侧
+- 适合讲解型页面、步骤说明页、案例页
+
+图片来源说明：
+
+- README 与 demo 中使用的海龟图片来自 Unsplash：https://unsplash.com/photos/brown-turtle-swimming-underwater-L-2p8fapOA8
+
 ## 配色说明
 
 当前主题使用了一套偏中国风的颜色系统，核心色包括：
@@ -339,6 +475,26 @@ paginate: true
 - 米土：次级文字和引用
 
 如果你想改成自己的风格，优先修改 `themes/takahashi.css` 顶部的颜色变量，而不是在后面直接替换零散颜色。
+
+### 标题层级颜色
+
+当前主题里，标题和正文的主层级颜色是这样设计的：
+
+| 层级 | 深色页颜色 | 说明 |
+| --- | --- | --- |
+| `h1` | 朱砂 `--color-zhusha` | 最强强调，适合主标题和关键页 |
+| `h2` | 姜黄 `--color-jianghuang` | 二级标题，和正文明显拉开 |
+| `h3` | 青金 `--color-qingjin` | 三级标题，比 `h2` 更冷静，适合说明型标题 |
+| 正文 | 月白 `--color-yuebai` | 默认正文主色 |
+| 次级正文 / 引用 | 米土 `--color-mitu` | 副标题、引用、弱化信息 |
+
+在反白页 `section.invert` 中，标题颜色会做单独调整：
+
+- `h1` 使用朱砂 `--color-zhusha`
+- `h2` 使用朱砂 `--color-zhusha`
+- `h3` 使用苍青 `--color-cangqing`
+
+这样做的目的是让浅底页依然保留足够层级，不会因为背景变亮而让标题颜色发虚。
 
 ### 完整颜色变量表
 
@@ -371,7 +527,7 @@ paginate: true
 - `:root`: 页面尺寸、背景、基础字体、基础字号
 - `h1`, `h2`, `h3`: 标题层级
 - `section::after`: 页码样式
-- `section.lead`, `section.compact`, `section.invert`, `section.palette`: 页面变体
+- `section.lead`, `section.compact`, `section.invert`, `section.palette`, `section.cols-50-50`, `section.cols-33-67`, `section.image-demo`, `section.bg-cover-demo`, `section.image-split-demo`: 页面变体
 - 顶部颜色变量：整套主题配色
 
 ## 示例文件
@@ -380,7 +536,13 @@ paginate: true
 
 - `slides/demo.md`
 
-建议先打开这个文件看预览，再从内容或配色开始改。
+这个示例里已经包含以下常见图片用法：
+
+- 普通插图
+- 整页背景图
+- 左右分栏图文
+
+建议先打开这个文件看预览，再从内容、配色或图片布局开始改。
 
 ## 开发方式
 

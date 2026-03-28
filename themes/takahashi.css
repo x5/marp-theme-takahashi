@@ -65,6 +65,7 @@ h2 {
   font-size: 2.8em;
   font-weight: 800;
   letter-spacing: 0.03em;
+  color: var(--color-jianghuang);
   text-transform: uppercase;
   text-wrap: balance;
 }
@@ -75,6 +76,7 @@ h3 {
   font-size: 2em;
   font-weight: 760;
   letter-spacing: 0.02em;
+  color: var(--color-qingjin);
   text-transform: uppercase;
 }
 
@@ -214,6 +216,199 @@ section.compact ol {
   max-width: 24ch;
 }
 
+/* Column layouts intentionally override the theme's narrow text defaults. */
+section.cols-50-50,
+section.cols-33-67 {
+  align-content: center;
+  justify-content: stretch;
+  justify-items: stretch;
+  gap: 0.56em;
+  text-align: left;
+}
+
+section.cols-50-50 h2,
+section.cols-33-67 h2 {
+  max-width: none;
+  margin-inline: 0;
+  justify-self: start;
+}
+
+section.cols-50-50,
+section.cols-33-67 {
+  grid-template-columns: 1fr 1fr;
+  column-gap: 48px;
+  row-gap: 0.3em;
+}
+
+section.cols-33-67 {
+  grid-template-columns: minmax(220px, 0.9fr) minmax(0, 2.1fr);
+  column-gap: 56px;
+  row-gap: 0.22em;
+}
+
+section.cols-50-50 > h2,
+section.cols-33-67 > h2 {
+  grid-column: 1 / -1;
+}
+
+section.cols-50-50 > h3:first-of-type,
+section.cols-50-50 > h3:first-of-type + :is(p, ul, ol, blockquote, pre, table),
+section.cols-33-67 > h3:first-of-type,
+section.cols-33-67 > h3:first-of-type + :is(p, ul, ol, blockquote, pre, table) {
+  grid-column: 1;
+  margin-inline: 0;
+}
+
+section.cols-50-50 > h3:first-of-type,
+section.cols-33-67 > h3:first-of-type,
+section.cols-50-50 > h3:nth-of-type(2),
+section.cols-33-67 > h3:nth-of-type(2) {
+  grid-row: 2;
+}
+
+section.cols-50-50 > h3:first-of-type + :is(p, ul, ol, blockquote, pre, table),
+section.cols-33-67 > h3:first-of-type + :is(p, ul, ol, blockquote, pre, table),
+section.cols-50-50 > h3:nth-of-type(2) + :is(p, ul, ol, blockquote, pre, table),
+section.cols-33-67 > h3:nth-of-type(2) + :is(p, ul, ol, blockquote, pre, table) {
+  grid-row: 3;
+}
+
+section.cols-50-50 > h3:nth-of-type(2),
+section.cols-50-50 > h3:nth-of-type(2) + :is(p, ul, ol, blockquote, pre, table),
+section.cols-33-67 > h3:nth-of-type(2),
+section.cols-33-67 > h3:nth-of-type(2) + :is(p, ul, ol, blockquote, pre, table) {
+  grid-column: 2;
+  margin-inline: 0;
+}
+
+section.cols-50-50 > h3,
+section.cols-33-67 > h3 {
+  max-width: none;
+  font-size: 1.2em;
+}
+
+section.cols-33-67 > h3:nth-of-type(2) {
+  font-size: 1.14em;
+  line-height: 1.12;
+}
+
+section.cols-50-50 > p,
+section.cols-33-67 > p {
+  font-size: 0.96em;
+}
+
+section.cols-33-67 > h3:first-of-type + p,
+section.cols-33-67 > h3:nth-of-type(2) + :is(p, ul, ol) {
+  line-height: 1.18;
+}
+
+section.cols-33-67 > h3:nth-of-type(2) + :is(p, ul, ol) {
+  font-size: 0.9em;
+}
+
+section.cols-50-50 li,
+section.cols-33-67 li {
+  font-size: 0.88em;
+  line-height: 1.22;
+  max-width: none;
+}
+
+section.cols-50-50 > :is(p, ul, ol, blockquote, pre, table),
+section.cols-33-67 > :is(p, ul, ol, blockquote, pre, table) {
+  max-width: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+section.cols-50-50 > :is(ul, ol),
+section.cols-33-67 > :is(ul, ol) {
+  justify-self: stretch;
+  width: 100%;
+}
+
+section.cols-50-50 > :is(p, blockquote, pre, table),
+section.cols-33-67 > :is(p, blockquote, pre, table) {
+  justify-self: stretch;
+}
+
+section.image-demo {
+  gap: 0.4em;
+}
+
+section.image-demo p {
+  max-width: none;
+}
+
+section.image-demo p:first-of-type {
+  justify-self: center;
+  width: fit-content;
+  margin-block: 0.22em 0.28em;
+  padding: 14px;
+  border: 1px solid rgba(230, 220, 200, 0.28);
+  outline: 1px solid rgba(247, 243, 232, 0.08);
+  outline-offset: -6px;
+  background: linear-gradient(180deg, rgba(247, 243, 232, 0.06), rgba(247, 243, 232, 0.03));
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24), 0 0 0 1px rgba(15, 16, 20, 0.32);
+  box-sizing: border-box;
+}
+
+section.image-demo img {
+  display: block;
+  margin-inline: auto;
+  border: 1px solid rgba(247, 243, 232, 0.18);
+}
+
+section.bg-cover-demo {
+  place-content: end start;
+  justify-items: start;
+  gap: 0.18em;
+  padding-bottom: 96px;
+  text-align: left;
+  color: var(--color-yuebai);
+}
+
+section.bg-cover-demo h1 {
+  max-width: 8ch;
+  margin-inline: 0;
+  font-size: 3.9em;
+  line-height: 1.02;
+}
+
+section.bg-cover-demo p {
+  max-width: 18ch;
+  margin-inline: 0;
+  font-size: 1em;
+  color: rgba(247, 243, 232, 0.92);
+}
+
+section.image-split-demo {
+  place-content: center end;
+  justify-items: start;
+  gap: 0.32em;
+  text-align: left;
+}
+
+section.image-split-demo h2,
+section.image-split-demo p,
+section.image-split-demo ul {
+  margin-inline: 0;
+}
+
+section.image-split-demo h2 {
+  max-width: 10ch;
+}
+
+section.image-split-demo p,
+section.image-split-demo li {
+  max-width: 18ch;
+  font-size: 1em;
+}
+
+section.image-split-demo ul {
+  justify-self: start;
+  max-width: 18ch;
+}
+
 section.invert {
   background: #f4ead7;
   color: var(--color-xuanhei);
@@ -226,6 +421,14 @@ section.invert code {
 
 section.invert h1 {
   color: var(--color-zhusha);
+}
+
+section.invert h2 {
+  color: var(--color-zhusha);
+}
+
+section.invert h3 {
+  color: var(--color-cangqing);
 }
 
 section.invert header,

@@ -1,4 +1,4 @@
-# Takahashi Theme for Marp
+# A Takahashi Theme for Marp
 
 ![Marp](https://img.shields.io/badge/Marp-Theme-1f6feb)
 ![Language](https://img.shields.io/badge/Language-zh--CN-c63c2f)
@@ -33,7 +33,7 @@ paginate: true
 
 ## 目录
 
-- [Takahashi Theme for Marp](#takahashi-theme-for-marp)
+- [A Takahashi Theme for Marp](#a-takahashi-theme-for-marp)
   - [快速开始](#快速开始)
   - [目录](#目录)
   - [什么是 Takahashi 风格](#什么是-takahashi-风格)

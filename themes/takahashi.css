@@ -16,9 +16,13 @@
   --color-danjin-glow: rgba(213, 160, 33, 0.18);
   --color-zhusha-glow: rgba(198, 60, 47, 0.12);
   --color-paper-glow: rgba(247, 243, 232, 0.08);
+  --slide-width: 1280px;
+  --slide-height: 720px;
+  --slide-padding-block: 64px;
+  --slide-padding-inline: 84px;
   width: 1280px;
   height: 720px;
-  padding: 64px 84px;
+  padding: var(--slide-padding-block) var(--slide-padding-inline);
   background: var(--color-xuanhei);
   color: var(--color-yuebai);
   font-family: "Aptos", "Segoe UI", "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", "Source Han Sans SC", sans-serif;
@@ -28,14 +32,111 @@
 
 section {
   display: grid;
+  align-content: center;
+  justify-items: stretch;
   place-content: center;
   gap: 0.22em;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
   text-align: center;
+  box-sizing: border-box;
+  container-type: inline-size;
+  --content-scale: 1;
+  --paragraph-scale: 1;
+  --list-scale: 1;
+  --content-gap: 0.22em;
+  --heading-line-height: 1.05;
+  --body-line-height: 1.2;
+  gap: var(--content-gap);
 }
 
 section[lang='zh-CN'],
 section[lang='zh'] {
   font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", "Source Han Sans SC", "Segoe UI", sans-serif;
+}
+
+section > :is(h1, h2, h3, p, blockquote, ul, ol, pre, table) {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+section > :is(h1, h2, h3, p, blockquote) {
+  justify-self: stretch;
+}
+
+section > :is(ul, ol) {
+  justify-self: stretch;
+}
+
+section:has(> h1:only-child),
+section:has(> h2:only-child),
+section:has(> h3:only-child),
+section.lead {
+  --content-scale: 1.1;
+}
+
+section:has(> h1 + p:last-child),
+section:has(> h2 + p:last-child),
+section:has(> h3 + p:last-child) {
+  --content-scale: 1.02;
+  --paragraph-scale: 0.9;
+}
+
+section:has(> p:only-child),
+section:has(> blockquote:only-child) {
+  --content-scale: 0.82;
+  --paragraph-scale: 0.94;
+  --body-line-height: 1.16;
+}
+
+section:has(> p:nth-of-type(2)),
+section:has(> h3:nth-of-type(2)),
+section:has(> blockquote),
+section:has(> ul li:nth-child(5)),
+section:has(> ol li:nth-child(5)),
+section.compact {
+  --content-scale: 0.9;
+  --paragraph-scale: 0.92;
+  --list-scale: 0.95;
+  --content-gap: 0.3em;
+}
+
+section:has(> p:nth-of-type(3)),
+section:has(> h3:nth-of-type(3)),
+section:has(> ul li:nth-child(7)),
+section:has(> ol li:nth-child(7)),
+section:has(> :is(ul, ol) + :is(p, ul, ol, blockquote)),
+section:has(> p + p + ul),
+section:has(> h2 + p + ul),
+section:has(> h2 + p + p) {
+  --content-scale: 0.8;
+  --paragraph-scale: 0.9;
+  --list-scale: 0.92;
+  --content-gap: 0.34em;
+}
+
+section:has(> p:nth-of-type(4)),
+section:has(> ul li:nth-child(9)),
+section:has(> ol li:nth-child(9)),
+section:has(> h3:nth-of-type(4)) {
+  --content-scale: 0.7;
+  --paragraph-scale: 0.88;
+  --list-scale: 0.9;
+  --content-gap: 0.38em;
+}
+
+section.long-copy,
+section.dense-copy {
+  --content-scale: 0.68;
+  --paragraph-scale: 0.86;
+  --list-scale: 0.88;
+  --body-line-height: 1.14;
+  --content-gap: 0.4em;
 }
 
 h1,
@@ -49,44 +150,48 @@ ol {
 }
 
 h1 {
-  max-width: 10ch;
   margin-inline: auto;
-  font-size: 3.6em;
+  font-size: calc(3.2em * var(--content-scale));
   font-weight: 850;
   letter-spacing: 0.04em;
+  line-height: var(--heading-line-height);
   color: var(--color-zhusha);
   text-transform: uppercase;
   text-wrap: balance;
 }
 
 h2 {
-  max-width: 12ch;
   margin-inline: auto;
-  font-size: 2.8em;
+  font-size: calc(2.4em * var(--content-scale));
   font-weight: 800;
   letter-spacing: 0.03em;
+  line-height: var(--heading-line-height);
   color: var(--color-jianghuang);
   text-transform: uppercase;
   text-wrap: balance;
 }
 
 h3 {
-  max-width: 15ch;
   margin-inline: auto;
-  font-size: 2em;
+  font-size: calc(1.7em * var(--content-scale));
   font-weight: 760;
   letter-spacing: 0.02em;
+  line-height: calc(var(--heading-line-height) + 0.05);
   color: var(--color-qingjin);
   text-transform: uppercase;
 }
 
 p,
 li {
-  max-width: 18ch;
   margin-inline: auto;
-  font-size: 1.3em;
+  font-size: calc(1.08em * var(--content-scale) * var(--paragraph-scale));
   font-weight: 600;
+  line-height: var(--body-line-height);
   text-wrap: balance;
+}
+
+li {
+  font-size: calc(1.08em * var(--content-scale) * var(--paragraph-scale) * var(--list-scale));
 }
 
 strong {
@@ -102,9 +207,8 @@ code {
 
 ul,
 ol {
-  justify-self: center;
-  width: fit-content;
-  max-width: 22ch;
+  width: 100%;
+  max-width: 100%;
   padding-left: 1.2em;
   text-align: left;
   list-style-position: outside;
@@ -117,12 +221,25 @@ ol li {
 }
 
 blockquote {
-  max-width: 22ch;
+  position: relative;
   margin-inline: auto;
-  padding-top: 0.4em;
-  font-size: 1.05em;
+  padding: 0.34em 0 0.34em 0.72em;
+  border-left: none;
+  font-size: calc(0.98em * var(--content-scale));
+  line-height: calc(var(--body-line-height) + 0.06);
   font-weight: 500;
   color: var(--color-mitu);
+}
+
+blockquote::before {
+  content: "";
+  position: absolute;
+  top: -0.1em;
+  bottom: -0.1em;
+  left: 0;
+  width: 0.16em;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(247, 243, 232, 0.92), rgba(230, 220, 200, 0.68));
 }
 
 section[lang='zh-CN'] h1,
@@ -141,7 +258,6 @@ section[lang='zh-CN'] li,
 section[lang='zh'] li,
 section[lang='zh-CN'] blockquote,
 section[lang='zh'] blockquote {
-  max-width: 16ch;
   line-height: 1.28;
 }
 
@@ -149,7 +265,7 @@ section[lang='zh-CN'] ul,
 section[lang='zh'] ul,
 section[lang='zh-CN'] ol,
 section[lang='zh'] ol {
-  max-width: 18ch;
+  padding-left: 1.35em;
 }
 
 header,
@@ -187,33 +303,29 @@ section.lead {
 }
 
 section.lead h1 {
-  max-width: 9ch;
-  font-size: 4.2em;
+  font-size: calc(3.95em * var(--content-scale));
 }
 
 section.lead p {
-  font-size: 1.1em;
+  font-size: calc(0.94em * var(--content-scale));
   font-weight: 500;
   color: var(--color-mitu);
 }
 
 section.compact {
   place-content: center;
-  gap: 0.4em;
 }
 
 section.compact h3,
 section.compact p,
 section.compact li {
-  max-width: 22ch;
-  font-size: 1em;
   font-weight: 550;
   line-height: 1.25;
 }
 
 section.compact ul,
 section.compact ol {
-  max-width: 24ch;
+  padding-left: 1.1em;
 }
 
 /* Column layouts intentionally override the theme's narrow text defaults. */

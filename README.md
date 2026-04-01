@@ -54,14 +54,17 @@ paginate: true
   - [最小示例](#最小示例)
   - [内置版式](#内置版式)
     - [完整页面 class 对照表](#完整页面-class-对照表)
+    - [默认内容自适应](#默认内容自适应)
     - [`lead`](#lead)
     - [`compact`](#compact)
     - [`invert`](#invert)
     - [`palette`](#palette)
-    - [`text-two-column`](#text-two-column)
+    - [`cols-50-50`](#cols-50-50)
+    - [`cols-33-67`](#cols-33-67)
     - [`image-demo`](#image-demo)
     - [`bg-cover-demo`](#bg-cover-demo)
     - [`image-split-demo`](#image-split-demo)
+    - [`long-copy` / `dense-copy`](#long-copy--dense-copy)
   - [配色说明](#配色说明)
     - [标题层级颜色](#标题层级颜色)
     - [完整颜色变量表](#完整颜色变量表)
@@ -112,9 +115,12 @@ Marp 的官方入口和相关链接：
 ## 特性
 
 - Takahashi 风格大字排版
+- 默认按内容密度自动缩放文字层级
+- 标题、正文、列表默认使用更稳定的满宽内容区
+- 长段落和说明页默认避免文字溢出与截断
 - 中文优先的字体回退配置
 - 中国风配色体系
-- 支持封面页、紧凑列表页、反白强调页
+- 支持封面页、紧凑列表页、反白强调页和长文兜底页
 - 可直接在 Marp for VS Code 中预览
 - 可用于 Marp CLI 导出 HTML、PDF、PPTX
 
@@ -242,12 +248,34 @@ paginate: true
 | `image-demo` | 普通插图页，放开图片容器宽度限制 | `<!-- _class: image-demo -->` |
 | `bg-cover-demo` | 整页背景图封面页 | `<!-- _class: bg-cover-demo -->` |
 | `image-split-demo` | 左图右文的分栏说明页 | `<!-- _class: image-split-demo -->` |
+| `long-copy` / `dense-copy` | 极长说明页的手动兜底缩放 | `<!-- _class: long-copy -->` |
 
 说明：
 
 - 这些 class 都是作用在每一页的 `section` 元素上
 - 更常见的写法是 `<!-- _class: ... -->`，只让当前页生效
 - 如果写成 `<!-- class: ... -->`，则会持续影响后续页面，直到被新的 `class` 指令覆盖
+
+### 默认内容自适应
+
+除了显式的页面 class，这个主题现在还带有几条默认生效的内容自适应规则。
+
+效果：
+
+- 当一页里的段落、列表项或说明内容明显变多时，字号会按内容密度自动缩小
+- 标题、正文、列表默认使用更接近 Section 内容区满宽的排版，不再收得很窄
+- 长段落会优先换行并继续缩放，而不是直接从页面边缘溢出或被底部截断
+
+适用场景：
+
+- 培训说明页
+- 框架拆解页
+- 比传统 Takahashi 页面更偏说明型的内容页
+
+说明：
+
+- 这是主题的默认行为，不需要额外写 `class`
+- 如果页面内容极端偏长，仍然建议拆页，或者使用下方的 `long-copy` / `dense-copy`
 
 ### `lead`
 
@@ -459,6 +487,29 @@ paginate: true
 - 标题、正文、列表稳定落在右侧
 - 适合讲解型页面、步骤说明页、案例页
 
+### `long-copy` / `dense-copy`
+
+用于极长说明页的手动兜底。当你明确知道某一页会放入更长的定义、背景说明、概念解释或一整段接近说明文长度的正文时，可以手动加这一类 class，在默认自动缩放之外再额外收紧一档字号和行高。
+
+```markdown
+<!-- _class: long-copy -->
+
+## long-copy 手动兜底
+
+当你需要保留一整段较长说明时，可以显式使用这个 class。
+```
+
+效果：
+
+- 比默认自动缩放更激进地缩小正文和列表字号
+- 行高也会进一步收紧，更适合长段落说明页
+- 适合少量必须保留在单页中的重说明内容
+
+说明：
+
+- `long-copy` 和 `dense-copy` 当前使用同一套缩放规则
+- 这两个名称都可用，主要是为了让写 slide 时语义更顺手
+
 图片来源说明：
 
 - README 与 demo 中使用的海龟图片来自 Unsplash：https://unsplash.com/photos/brown-turtle-swimming-underwater-L-2p8fapOA8
@@ -527,7 +578,7 @@ paginate: true
 - `:root`: 页面尺寸、背景、基础字体、基础字号
 - `h1`, `h2`, `h3`: 标题层级
 - `section::after`: 页码样式
-- `section.lead`, `section.compact`, `section.invert`, `section.palette`, `section.cols-50-50`, `section.cols-33-67`, `section.image-demo`, `section.bg-cover-demo`, `section.image-split-demo`: 页面变体
+- `section.lead`, `section.compact`, `section.invert`, `section.palette`, `section.cols-50-50`, `section.cols-33-67`, `section.image-demo`, `section.bg-cover-demo`, `section.image-split-demo`, `section.long-copy`, `section.dense-copy`: 页面变体
 - 顶部颜色变量：整套主题配色
 
 ## 示例文件
